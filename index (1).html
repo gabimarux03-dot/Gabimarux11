@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nexora — technology services, digital business solutions, and innovation for ambitious businesses.">
+  <meta name="theme-color" content="#0a1020">
+  <title>Nexora | Technology for Business</title>
+  <style>
+    :root{
+      --bg:#080d19;--surface:#10182a;--surface2:#151f34;--text:#eef3ff;--muted:#9aa8c4;
+      --line:rgba(164,184,224,.14);--accent:#6d8cff;--accent2:#38d9c5;--shadow:0 24px 70px rgba(0,0,0,.28);
+      --radius:20px;--max:1180px
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:radial-gradient(900px 500px at 80% -10%,rgba(83,111,255,.18),transparent 60%),var(--bg);color:var(--text);font:16px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body.light{--bg:#f4f7ff;--surface:#fff;--surface2:#eef2ff;--text:#14203a;--muted:#5d6b86;--line:rgba(37,55,92,.13);--shadow:0 20px 55px rgba(41,58,102,.12);background:radial-gradient(900px 500px at 80% -10%,rgba(83,111,255,.12),transparent 60%),var(--bg)}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
+    .nav-wrap{position:sticky;top:0;z-index:50;background:rgba(8,13,25,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    body.light .nav-wrap{background:rgba(244,247,255,.86)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:-.04em;font-size:1.28rem}
+    .brand-mark{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--accent),#9c6dff);display:grid;place-items:center;color:white;font-weight:900;box-shadow:0 8px 25px rgba(109,140,255,.3)}
+    .nav-links{display:flex;align-items:center;gap:27px;color:var(--muted);font-size:.92rem}
+    .nav-links a:hover,.nav-links a.active{color:var(--text)}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .icon-btn,.menu-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:13px;background:var(--surface);color:var(--text);display:grid;place-items:center}
+    .menu-btn{display:none}
+    .btn{border:0;border-radius:13px;padding:12px 18px;font-weight:750;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:transform .2s,filter .2s}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),#8b6dff);color:white;box-shadow:0 10px 28px rgba(109,140,255,.24)}
+    .btn-ghost{border:1px solid var(--line);background:var(--surface);color:var(--text)}
+    .hero{padding:82px 0 64px;position:relative;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 12px;border:1px solid var(--line);background:var(--surface);border-radius:999px;color:var(--muted);font-size:.8rem;font-weight:700}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 0 5px rgba(56,217,197,.1)}
+    h1{font-size:clamp(2.6rem,5.7vw,5.2rem);line-height:1.04;letter-spacing:-.065em;margin:22px 0}
+    .gradient-text{background:linear-gradient(100deg,#8aa5ff,#55dfd1 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-copy{max-width:570px;color:var(--muted);font-size:1.08rem}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0}
+    .trust{display:flex;align-items:center;gap:13px;color:var(--muted);font-size:.84rem;margin-top:26px}
+    .avatars{display:flex}
+    .avatar{width:31px;height:31px;border-radius:50%;border:2px solid var(--bg);margin-left:-8px;background:linear-gradient(135deg,#8aa5ff,#52d9c5);display:grid;place-items:center;color:#07101f;font-size:.7rem;font-weight:900}
+    .avatar:first-child{margin-left:0}
+    .hero-visual{position:relative;min-height:420px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(145deg,rgba(109,140,255,.13),rgba(56,217,197,.05)),var(--surface);padding:22px;box-shadow:var(--shadow);overflow:hidden}
+    .visual-glow{position:absolute;width:270px;height:270px;border-radius:50%;background:rgba(109,140,255,.22);filter:blur(70px);right:-70px;top:-70px}
+    .dash-top{display:flex;justify-content:space-between;align-items:center;position:relative}
+    .mini-label{font-size:.75rem;color:var(--muted)}
+    .live{font-size:.72rem;color:var(--accent2);border:1px solid rgba(56,217,197,.25);padding:5px 9px;border-radius:20px}
+    .metric{font-size:2.3rem;font-weight:850;letter-spacing:-.05em;margin:8px 0}
+    .positive{color:var(--accent2);font-size:.83rem;font-weight:700}
+    .chart{height:170px;width:100%;margin:12px 0}
+    .chart svg{width:100%;height:100%;overflow:visible}
+    .dash-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .mini-stat{background:rgba(128,149,192,.08);border:1px solid var(--line);padding:13px;border-radius:14px}
+    .mini-stat strong{display:block;font-size:1.08rem}
+    .mini-stat span{font-size:.7rem;color:var(--muted)}
+    .float-card{position:absolute;right:-8px;bottom:36px;background:var(--surface);border:1px solid var(--line);padding:13px 16px;border-radius:16px;box-shadow:var(--shadow);animation:float 4s ease-in-out infinite}
+    .float-card strong{display:block}
+    .float-card small{color:var(--muted)}
+    @keyframes float{50%{transform:translateY(-9px)}}
+    section{padding:72px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:30px}
+    .kicker{color:var(--accent2);text-transform:uppercase;letter-spacing:.13em;font-size:.74rem;font-weight:850}
+    h2{font-size:clamp(1.9rem,3.4vw,3rem);line-height:1.12;letter-spacing:-.05em;margin:10px 0}
+    .section-desc{max-width:560px;color:var(--muted);margin:0}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .service-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:transform .22s,border-color .22s;position:relative;overflow:hidden}
+    .service-card:hover{transform:translateY(-5px);border-color:rgba(109,140,255,.5)}
+    .service-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:rgba(109,140,255,.13);color:#8ba5ff;font-size:1.4rem;margin-bottom:20px}
+    .service-card h3{margin:0 0 9px;font-size:1.12rem}
+    .service-card p{color:var(--muted);font-size:.9rem;margin:0 0 18px}
+    .text-link{color:#8ba5ff;font-weight:800;font-size:.88rem;background:none;border:0;padding:0}
+    .service-card .tag{position:absolute;right:18px;top:18px;font-size:.68rem;color:var(--accent2);background:rgba(56,217,197,.09);padding:5px 8px;border-radius:20px}
+    .business-section{background:linear-gradient(180deg,transparent,rgba(109,140,255,.045),transparent)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+    .searchbox{flex:1;min-width:220px;position:relative}
+    .searchbox input{width:100%;height:48px;padding:0 16px 0 44px;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--text);outline:none}
+    .searchbox input:focus,select:focus{border-color:var(--accent)}
+    .searchbox span{position:absolute;left:16px;top:12px;color:var(--muted)}
+    select{height:48px;padding:0 15px;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--text);min-width:155px;outline:none}
+    .business-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .business-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s}
+    .business-card:hover{transform:translateY(-4px)}
+    .business-cover{height:130px;display:grid;place-items:center;font-size:2.7rem;background:linear-gradient(135deg,rgba(109,140,255,.2),rgba(56,217,197,.08));position:relative}
+    .business-cover:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.12),transparent 40%)}
+    .business-body{padding:20px;display:flex;flex-direction:column;flex:1}
+    .business-meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:.72rem;margin-bottom:10px}
+    .business-body h3{margin:0 0 8px;font-size:1.1rem}
+    .business-body p{color:var(--muted);font-size:.86rem;margin:0 0 18px}
+    .business-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+    .price{font-weight:850;font-size:.9rem}
+    .price small{font-weight:500;color:var(--muted)}
+    .save-btn{border:1px solid var(--line);background:var(--surface2);color:var(--text);border-radius:10px;padding:7px 10px}
+    .save-btn.saved{color:#ff7297;border-color:rgba(255,114,151,.3)}
+    .empty{grid-column:1/-1;text-align:center;padding:45px 20px;border:1px dashed var(--line);border-radius:18px;color:var(--muted)}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .stat-card{padding:23px;border-radius:18px;background:var(--surface);border:1px solid var(--line)}
+    .stat-card strong{font-size:2rem;letter-spacing:-.05em;display:block}
+    .stat-card span{font-size:.82rem;color:var(--muted)}
+    .cta{border:1px solid rgba(109,140,255,.25);border-radius:28px;padding:48px;background:linear-gradient(120deg,rgba(109,140,255,.17),rgba(56,217,197,.07)),var(--surface);display:flex;justify-content:space-between;align-items:center;gap:30px}
+    .cta p{color:var(--muted);max-width:580px;margin:10px 0 0}
+    footer{padding:35px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.83rem}
+    .footer-row{display:flex;justify-content:space-between;align-items:center;gap:20px}
+    .footer-links{display:flex;gap:18px;flex-wrap:wrap}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+    .modal-backdrop.open{display:flex}
+    .modal{width:min(560px,100%);max-height:90vh;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+    .modal-head{display:flex;justify-content:space-between;align-items:center;gap:15px}
+    .modal h2{font-size:1.65rem}
+    .modal-close{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--surface2);color:var(--text)}
+    .form-grid{display:grid;gap:13px;margin-top:18px}
+    .form-grid label{font-size:.82rem;color:var(--muted);display:grid;gap:6px}
+    .form-grid input,.form-grid textarea,.form-grid select{width:100%;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px;outline:none}
+    .form-grid textarea{min-height:100px;resize:vertical}
+    .notice{font-size:.78rem;color:var(--muted);margin:10px 0 0}
+    .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--text);color:var(--bg);padding:12px 18px;border-radius:14px;z-index:150;font-weight:750;font-size:.86rem;transition:.25s}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+    .reveal.visible{opacity:1;transform:none}
+    @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:35px}.hero-visual{min-height:390px}.services-grid,.business-grid{grid-template-columns:repeat(2,1fr)}.stats-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:650px){.container{width:min(100% - 28px,var(--max))}.nav{height:68px}.nav-links{display:none;position:absolute;left:14px;right:14px;top:68px;padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:16px;flex-direction:column;align-items:stretch;gap:14px}.nav-links.open{display:flex}.menu-btn{display:grid}.nav-actions .btn{display:none}.hero{padding:50px 0 40px}.hero-visual{padding:17px;min-height:360px}.metric{font-size:1.9rem}.float-card{right:10px;bottom:15px}.section-head{display:block}.section-head .section-desc{margin-top:12px}.services-grid,.business-grid{grid-template-columns:1fr}.stats-grid{gap:10px}.stat-card{padding:17px}.stat-card strong{font-size:1.6rem}.cta{padding:28px;display:block}.cta .btn{margin-top:22px}.footer-row{flex-direction:column;align-items:flex-start}.toolbar select{flex:1}.dash-bottom{gap:7px}.mini-stat{padding:10px}.mini-stat strong{font-size:.95rem}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <header class="nav-wrap">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Nexora home"><span class="brand-mark">N</span>NEXORA</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="active">Home</a><a href="#services">Services</a><a href="#business">Business</a><a href="#insights">Insights</a><a href="#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle light and dark theme" title="Toggle theme">☼</button>
+        <button class="btn btn-primary" data-open-inquiry>Start a project <span>↗</span></button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="dot"></span> TECHNOLOGY • BUSINESS • INNOVATION</div>
+          <h1>Build smarter.<br><span class="gradient-text">Grow faster.</span></h1>
+          <p class="hero-copy">We connect ambitious businesses with modern digital solutions—from beautiful websites to smart software that makes work simpler.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#services">Explore our services <span>→</span></a><a class="btn btn-ghost" href="#business">Discover business</a></div>
+          <div class="trust"><div class="avatars"><span class="avatar">N</span><span class="avatar">T</span><span class="avatar">X</span></div><span>Digital solutions for the next generation of business.</span></div>
+        </div>
+        <div class="hero-visual reveal" aria-label="Illustrative business dashboard">
+          <div class="visual-glow"></div>
+          <div class="dash-top"><div><div class="mini-label">BUSINESS OVERVIEW</div><div class="metric">KSh 248,560</div><div class="positive">↗ +12.8% <span class="mini-label">illustrative growth</span></div></div><span class="live">● DEMO</span></div>
+          <div class="chart">
+            <svg viewBox="0 0 600 190" role="img" aria-label="Decorative upward chart">
+              <defs><linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#6d8cff" stop-opacity=".35"/><stop offset="1" stop-color="#6d8cff" stop-opacity="0"/></linearGradient></defs>
+              <g stroke="currentColor" opacity=".09"><path d="M0 35H600M0 80H600M0 125H600M0 170H600"/></g>
+              <path d="M0 150 C45 130 55 145 95 110 S155 125 190 88 S245 110 285 75 S345 96 385 55 S450 83 485 38 S550 60 600 18 L600 190 L0 190Z" fill="url(#chartFill)"/>
+              <path d="M0 150 C45 130 55 145 95 110 S155 125 190 88 S245 110 285 75 S345 96 385 55 S450 83 485 38 S550 60 600 18" fill="none" stroke="#7d98ff" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="600" cy="18" r="7" fill="#38d9c5" stroke="#10182a" stroke-width="4"/>
+            </svg>
+          </div>
+          <div class="dash-bottom"><div class="mini-stat"><strong>24/7</strong><span>Digital access</span></div><div class="mini-stat"><strong>Fast</strong><span>Modern workflow</span></div><div class="mini-stat"><strong>Secure*</strong><span>Built with care</span></div></div>
+          <div class="float-card"><small>Project status</small><strong>✦ Ready to innovate</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head reveal"><div><div class="kicker">What we do</div><h2>Technology that works<br>for your business.</h2></div><p class="section-desc">Practical digital services designed to help you launch, improve and scale your ideas.</p></div>
+        <div class="services-grid">
+          <article class="service-card reveal"><span class="tag">POPULAR</span><div class="service-icon">⌘</div><h3>Website Development</h3><p>Fast, responsive websites that introduce your brand and help customers find you online.</p><button class="text-link" data-service="Website Development">Explore service ↗</button></article>
+          <article class="service-card reveal"><div class="service-icon">▣</div><h3>App & Software</h3><p>Useful digital tools, dashboards and custom software for everyday business needs.</p><button class="text-link" data-service="App & Software">Explore service ↗</button></article>
+          <article class="service-card reveal"><div class="service-icon">✳</div><h3>AI & Automation</h3><p>Discover ways to reduce repetitive work and make smarter use of digital tools.</p><button class="text-link" data-service="AI & Automation">Explore service ↗</button></article>
+          <article class="service-card reveal"><div class="service-icon">◈</div><h3>Brand & Design</h3><p>Clear visual identity, digital graphics and interfaces that feel consistent.</p><button class="text-link" data-service="Brand & Design">Explore service ↗</button></article>
+          <article class="service-card reveal"><div class="service-icon">⌁</div><h3>IT Support</h3><p>Technology guidance, setup and troubleshooting for small teams and individuals.</p><button class="text-link" data-service="IT Support">Explore service ↗</button></article>
+          <article class="service-card reveal"><div class="service-icon">↗</div><h3>Digital Growth</h3><p>Online presence, content planning and practical ways to reach more customers.</p><button class="text-link" data-service="Digital Growth">Explore service ↗</button></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="business-section" id="business">
+      <div class="container">
+        <div class="section-head reveal"><div><div class="kicker">Business directory</div><h2>Ideas into opportunities.</h2></div><p class="section-desc">Explore sample business solutions. Search by service or filter the directory to find what you need.</p></div>
+        <div class="toolbar reveal">
+          <div class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Search businesses or services..." aria-label="Search business directory"></div>
+          <select id="categoryFilter" aria-label="Filter by category"><option value="all">All categories</option><option value="web">Web & Software</option><option value="design">Design & Media</option><option value="support">IT & Support</option><option value="growth">Digital Growth</option></select>
+          <select id="sortFilter" aria-label="Sort listings"><option value="featured">Featured first</option><option value="name">Name A–Z</option></select>
+        </div>
+        <div class="business-grid" id="businessGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="insights">
+      <div class="container">
+        <div class="section-head reveal"><div><div class="kicker">Our impact</div><h2>Small steps. Big possibilities.</h2></div><p class="section-desc">A technology-first mindset can help businesses build better customer experiences and work more efficiently.</p></div>
+        <div class="stats-grid">
+          <div class="stat-card reveal"><strong data-count="6">0</strong><span>Service categories</span></div>
+          <div class="stat-card reveal"><strong data-count="4">0</strong><span>Business directory filters</span></div>
+          <div class="stat-card reveal"><strong data-count="24">0</strong><span>Hours of digital access</span></div>
+          <div class="stat-card reveal"><strong data-count="100">0</strong><span>% responsive design goal</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta reveal"><div><div class="kicker">Have an idea?</div><h2>Let's make it happen.</h2><p>Tell us what you want to build. Use the inquiry form to prepare a project request and see a confirmation on this demo page.</p></div><button class="btn btn-primary" data-open-inquiry>Send an inquiry ↗</button></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-row"><a class="brand" href="#home"><span class="brand-mark">N</span>NEXORA</a><div class="footer-links"><a href="#services">Services</a><a href="#business">Business</a><a href="#contact">Contact</a></div><span>© <span id="year"></span> Nexora. Demo website.</span></div></footer>
+
+  <div class="modal-backdrop" id="inquiryModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal"><div class="modal-head"><div><div class="kicker">Project inquiry</div><h2 id="modalTitle">Tell us your idea</h2></div><button class="modal-close" id="closeModal" aria-label="Close dialog">✕</button></div>
+      <form id="inquiryForm" class="form-grid">
+        <label>Your name<input name="name" required maxlength="80" placeholder="Enter your name"></label>
+        <label>Email address<input name="email" type="email" required maxlength="120" placeholder="you@example.com"></label>
+        <label>What do you need?<select name="service" id="inquiryService" required><option value="">Choose a service</option><option>Website Development</option><option>App & Software</option><option>AI & Automation</option><option>Brand & Design</option><option>IT Support</option><option>Digital Growth</option><option>Other</option></select></label>
+        <label>Project details<textarea name="details" required maxlength="1200" placeholder="Briefly describe your idea..."></textarea></label>
+        <button class="btn btn-primary" type="submit">Prepare inquiry →</button>
+      </form>
+      <p class="notice">Demo only: this form does not send or store your details. Connect a trusted form backend or your own server before using it for real inquiries.</p>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    "use strict";
+
+    // Demo directory data. Replace these sample listings with real, verified businesses.
+    const listings = [
+      {id:1,name:"PixelCraft Studio",category:"design",label:"Design & Media",icon:"✦",description:"Brand identity, digital graphics and polished visual design for growing teams.",price:"From KSh 1,500",featured:true},
+      {id:2,name:"WebNest Solutions",category:"web",label:"Web & Software",icon:"⌘",description:"Responsive landing pages and business websites built for mobile visitors.",price:"From KSh 2,000",featured:true},
+      {id:3,name:"CodeSpring Labs",category:"web",label:"Web & Software",icon:"⌁",description:"Custom web tools, simple dashboards and software prototypes.",price:"Request quote",featured:true},
+      {id:4,name:"TechCare Desk",category:"support",label:"IT & Support",icon:"⚙",description:"Device setup, software help and practical technology troubleshooting.",price:"From KSh 500",featured:false},
+      {id:5,name:"Reach Digital",category:"growth",label:"Digital Growth",icon:"↗",description:"Social media planning, online visibility and content support.",price:"From KSh 1,000",featured:false},
+      {id:6,name:"BrightFrame Media",category:"design",label:"Design & Media",icon:"▣",description:"Creative assets, presentation design and digital media packages.",price:"Request quote",featured:false}
+    ];
+
+    const $ = (selector, root=document) => root.querySelector(selector);
+    const grid = $("#businessGrid");
+    const searchInput = $("#searchInput");
+    const categoryFilter = $("#categoryFilter");
+    const sortFilter = $("#sortFilter");
+    const modal = $("#inquiryModal");
+    const form = $("#inquiryForm");
+    const toast = $("#toast");
+    let toastTimer;
+
+    function getSaved(){
+      try { return JSON.parse(localStorage.getItem("nexora-saved") || "[]"); }
+      catch { return []; }
+    }
+    function saveSaved(ids){
+      try { localStorage.setItem("nexora-saved", JSON.stringify(ids)); }
+      catch { showToast("Could not save favorites on this browser."); }
+    }
+    function escapeHTML(value){
+      return String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+    }
+    function renderListings(){
+      const query = searchInput.value.trim().toLowerCase();
+      const category = categoryFilter.value;
+      let results = listings.filter(item => {
+        const matchesCategory = category === "all" || item.category === category;
+        const text = `${item.name} ${item.label} ${item.description}`.toLowerCase();
+        return matchesCategory && text.includes(query);
+      });
+      if(sortFilter.value === "name") results.sort((a,b)=>a.name.localeCompare(b.name));
+      else results.sort((a,b)=>Number(b.featured)-Number(a.featured));
+      if(!results.length){
+        grid.innerHTML = '<div class="empty">No matching listings. Try another search or category.</div>';
+        return;
+      }
+      const saved = getSaved();
+      grid.innerHTML = results.map(item => `
+        <article class="business-card">
+          <div class="business-cover" aria-hidden="true">${item.icon}</div>
+          <div class="business-body">
+            <div class="business-meta"><span>${escapeHTML(item.label)}</span><span>${item.featured?"★ Featured":"● Listed"}</span></div>
+            <h3>${escapeHTML(item.name)}</h3>
+            <p>${escapeHTML(item.description)}</p>
+            <div class="business-footer">
+              <span class="price">${escapeHTML(item.price)}</span>
+              <button class="save-btn ${saved.includes(item.id)?"saved":""}" data-save="${item.id}" aria-label="${saved.includes(item.id)?"Remove":"Save"} ${escapeHTML(item.name)}">${saved.includes(item.id)?"♥ Saved":"♡ Save"}</button>
+            </div>
+          </div>
+        </article>`).join("");
+    }
+    function showToast(message){
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=>toast.classList.remove("show"),2800);
+    }
+    function openModal(service=""){
+      modal.classList.add("open");
+      document.body.style.overflow="hidden";
+      if(service) $("#inquiryService").value=service;
+      setTimeout(()=> $('input[name="name"]',form).focus(),50);
+    }
+    function closeModal(){
+      modal.classList.remove("open");
+      document.body.style.overflow="";
+    }
+
+    searchInput.addEventListener("input",renderListings);
+    categoryFilter.addEventListener("change",renderListings);
+    sortFilter.addEventListener("change",renderListings);
+    grid.addEventListener("click",event=>{
+      const button=event.target.closest("[data-save]");
+      if(!button)return;
+      const id=Number(button.dataset.save);
+      const saved=getSaved();
+      const next=saved.includes(id)?saved.filter(value=>value!==id):[...saved,id];
+      saveSaved(next);
+      renderListings();
+      showToast(next.includes(id)?"Listing saved to favorites.":"Listing removed from favorites.");
+    });
+    document.addEventListener("click",event=>{
+      const inquiry=event.target.closest("[data-open-inquiry]");
+      if(inquiry)openModal();
+      const service=event.target.closest("[data-service]");
+      if(service)openModal(service.dataset.service);
+    });
+    $("#closeModal").addEventListener("click",closeModal);
+    modal.addEventListener("click",event=>{if(event.target===modal)closeModal();});
+    document.addEventListener("keydown",event=>{if(event.key==="Escape")closeModal();});
+
+    form.addEventListener("submit",event=>{
+      event.preventDefault();
+      const data=new FormData(form);
+      const name=String(data.get("name")||"").trim();
+      if(!name){showToast("Please enter your name.");return;}
+      form.reset();
+      closeModal();
+      showToast(`Thanks, ${name}! Your demo inquiry is ready.`);
+    });
+
+    $("#themeBtn").addEventListener("click",()=>{
+      document.body.classList.toggle("light");
+      const light=document.body.classList.contains("light");
+      $("#themeBtn").textContent=light?"☾":"☼";
+      try{localStorage.setItem("nexora-theme",light?"light":"dark");}catch{}
+    });
+    try{if(localStorage.getItem("nexora-theme")==="light"){document.body.classList.add("light");$("#themeBtn").textContent="☾";}}catch{}
+    const menuBtn=$("#menuBtn"),navLinks=$("#navLinks");
+    menuBtn.addEventListener("click",()=>{
+      const opened=navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded",String(opened));
+      menuBtn.textContent=opened?"✕":"☰";
+    });
+    navLinks.addEventListener("click",event=>{
+      if(event.target.closest("a")){navLinks.classList.remove("open");menuBtn.setAttribute("aria-expanded","false");menuBtn.textContent="☰";}
+    });
+    $("#year").textContent=new Date().getFullYear();
+
+    // Reveal elements as they enter the viewport; falls back gracefully if unsupported.
+    if("IntersectionObserver" in window){
+      const observer=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){entry.target.classList.add("visible");observer.unobserve(entry.target);}
+        });
+      },{threshold:.12});
+      document.querySelectorAll(".reveal").forEach(element=>observer.observe(element));
+    }else document.querySelectorAll(".reveal").forEach(element=>element.classList.add("visible"));
+
+    // Count-up stats, with reduced-motion support.
+    const counters=document.querySelectorAll("[data-count]");
+    const countObserver=("IntersectionObserver" in window)?new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting)return;
+        const el=entry.target,target=Number(el.dataset.count);
+        if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){el.textContent=target;countObserver.unobserve(el);return;}
+        const start=performance.now(),duration=900;
+        function tick(now){
+          const progress=Math.min((now-start)/duration,1);
+          el.textContent=Math.round(target*(1-Math.pow(1-progress,3)));
+          if(progress<1)requestAnimationFrame(tick);
+          else countObserver.unobserve(el);
+        }
+        requestAnimationFrame(tick);
+      });
+    },{threshold:.5}):null;
+    counters.forEach(el=>countObserver?countObserver.observe(el):el.textContent=el.dataset.count);
+
+    renderListings();
+  </script>
+</body>
+</html>
